@@ -1,0 +1,17 @@
+language: cpp
+sudo: false
+jobs:  
+  include:
+    - stage: "Style"             
+      name: "Style check"        
+      script: 
+        - pip install virtualenv
+        - virtualenv venv
+        - . ./venv/bin/activate
+        - pip install cpplint
+        - cpplint --filter="-legal/copyright","-build/c++11" **/*.cpp 
+        - deactivate 
+    - stage: "Build"
+      name: "Build check"
+      script:
+        - . ./build.sh
