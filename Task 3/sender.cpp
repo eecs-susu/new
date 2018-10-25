@@ -17,7 +17,7 @@ int main(int argc, char const *argv[]) {
 
   int descriptor = shm_open(name, O_CREAT | O_RDWR, 0666);
   if (descriptor == -1) {
-    printf("prod: Shared memory failed: %s\n", strerror(errno));
+    printf("Shared memory failed: %s\n", strerror(errno));
     exit(1);
   }
 
@@ -28,7 +28,7 @@ int main(int argc, char const *argv[]) {
       mmap(0, mem_size, PROT_READ | PROT_WRITE, MAP_SHARED, descriptor, 0);
 
   if (shared_addr == MAP_FAILED) {
-    printf("prod: Map failed: %s\n", strerror(errno));
+    printf("Map failed: %s\n", strerror(errno));
     exit(1);
   }
 
@@ -39,12 +39,12 @@ int main(int argc, char const *argv[]) {
   writer += snprintf(writer, mem_size - 1, "%s", text);
 
   if (munmap(shared_addr, mem_size) == -1) {
-    printf("prod: Unmap failed: %s\n", strerror(errno));
+    printf("Unmap failed: %s\n", strerror(errno));
     exit(1);
   }
 
   if (close(descriptor) == -1) {
-    printf("prod: Close failed: %s\n", strerror(errno));
+    printf("Close failed: %s\n", strerror(errno));
     exit(1);
   }
 
