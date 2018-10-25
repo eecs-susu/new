@@ -2,7 +2,6 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <sys/mman.h>
 #include <sys/shm.h>
 #include <sys/stat.h>
@@ -10,6 +9,7 @@
 #include <unistd.h>
 
 #include <iostream>
+#include <string>
 
 int main(int argc, char const *argv[]) {
   const char *name = "/shared-mem";
